@@ -1,4 +1,4 @@
-Here’s an updated README that includes information on the VPC, subnets, security groups, and other AWS resources you created.
+
 
 Ansible Multi-OS Web Server Deployment with AWS VPC Setup
 
