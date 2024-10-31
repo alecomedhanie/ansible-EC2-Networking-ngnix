@@ -1,2 +1,4 @@
 vault.pass
+*.DS_Store
 .DS_Store
+group_vars/all/pass.yml 
