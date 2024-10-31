@@ -1,54 +1,41 @@
----
+Here’s an updated README that includes information on the VPC, subnets, security groups, and other AWS resources you created.
 
 Ansible Multi-OS Web Server Deployment with AWS VPC Setup
 
 This project is an Ansible playbook to automate the setup and deployment of a web server across multiple EC2 instances with different Linux distributions (e.g., RedHat, Debian, Amazon Linux) in a secure AWS Virtual Private Cloud (VPC). This setup involves provisioning an isolated VPC, setting up subnets, configuring security groups, deploying NGINX, and uploading a custom index.html file to each instance.
 
----
+Table of Contents
+
+	•	Project Overview
+	•	Prerequisites
+	•	Project Structure
+	•	Setup
+	•	Usage
+	•	License
 
 Project Overview
 
 This Ansible project automates the following:
 
-1. Provisioning AWS Infrastructure:
-
-Creates a custom VPC with subnets, an internet gateway, and a route table.
-
-Sets up security groups for SSH and HTTP access to the EC2 instances.
-
-
-
-2. Deploying Web Servers:
-
-Provisions multiple EC2 instances across different Linux distributions.
-
-Installs and configures NGINX on each server.
-
-
-
-3. Customizing Web Content:
-
-Deploys a custom index.html to each server’s NGINX directory.
-
-Configures each instance to serve the HTML content via HTTP.
-
-
-
+	1.	Provisioning AWS Infrastructure:
+	•	Creates a custom VPC with subnets, an internet gateway, and a route table.
+	•	Sets up security groups for SSH and HTTP access to the EC2 instances.
+	2.	Deploying Web Servers:
+	•	Provisions multiple EC2 instances across different Linux distributions.
+	•	Installs and configures NGINX on each server.
+	3.	Customizing Web Content:
+	•	Deploys a custom index.html to each server’s NGINX directory.
+	•	Configures each instance to serve the HTML content via HTTP.
 
 Prerequisites
 
 Ensure you have:
 
-Ansible installed on your local machine
-
-AWS Access Keys with permissions for EC2, VPC, and related services
-
-SSH Key for EC2 access (e.g., ansible.pem)
-
-Ansible Vault for encrypted credentials if needed
-
-Python Boto3 library installed for AWS dynamic inventory management
-
+	•	Ansible installed on your local machine
+	•	AWS Access Keys with permissions for EC2, VPC, and related services
+	•	SSH Key for EC2 access (e.g., ansible.pem)
+	•	Ansible Vault for encrypted credentials if needed
+	•	Python Boto3 library installed for AWS dynamic inventory management
 
 Project Structure
 
@@ -94,28 +81,18 @@ Usage
 
 Step 1: Run the VPC Setup Playbook
 
-1. Run the following playbook to create the VPC and associated resources:
+	1.	Run the following playbook to create the VPC and associated resources:
 
 ansible-playbook -i aws_ec2.yml create_vpc.yml --vault-password-file vault.pass --private-key ~/Downloads/ansible.pem -u ec2-user
 
 This will create:
+	•	A VPC with a custom CIDR range.
+	•	A subnet within the VPC.
+	•	An internet gateway and route table for outbound internet access.
+	•	A security group with rules to allow inbound SSH and HTTP access and unrestricted outbound access.
 
-A VPC with a custom CIDR range.
-
-A subnet within the VPC.
-
-An internet gateway and route table for outbound internet access.
-
-A security group with rules to allow inbound SSH and HTTP access and unrestricted outbound access.
-
-
-
-2. Provision EC2 Instances:
-
-The instances are created within the VPC and associated subnet.
-
-
-
+	2.	Provision EC2 Instances:
+	•	The instances are created within the VPC and associated subnet.
 
 Step 2: Deploy NGINX on EC2 Instances
 
@@ -133,12 +110,4 @@ Step 4: Access the Web Servers
 
 Once the playbooks are complete, open each server’s public IP in a browser to view the deployed index.html.
 
-License
-
-This project is licensed under the MIT License.
-
-
----
-
-This README includes all necessary details for setting up, deploying, and accessing your web servers, from VPC configuration to NGINX installation. Let me know if there’s anything more you’d like to add!
 
