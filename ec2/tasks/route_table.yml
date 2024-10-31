@@ -1,0 +1,15 @@
+# tasks/create_route_table.yml
+- name: Create VPC Public Subnet Route Table
+  amazon.aws.ec2_vpc_route_table:
+    aws_access_key: "{{ ec2_access_key }}"
+    aws_secret_key: "{{ ec2_secret_key }}"
+    vpc_id: "{{ ec2_vpc_net_result.vpc.id }}"
+    region: "{{ region }}"
+    state: present
+    tags:
+      Name: "{{ route_table_name }}"
+    subnets: [ "{{ subnet_result.subnet.id }}" ]
+    routes:
+      - dest: "{{ destination_cidr_block }}"
+        gateway_id: "{{ igw_result.gateway_id }}"
+  register: public_route_table

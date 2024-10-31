@@ -1,0 +1,22 @@
+# tasks/launch_instance.yml
+---
+- name: Provisioning EC2 instance over AWS Cloud
+  amazon.aws.ec2_instance:
+    image_id: "{{ image_id }}"
+    instance_type: "{{ instance_type }}"
+    region: "{{ region }}"
+    key_name: "{{ key }}"
+    wait: yes
+    count: 1  
+    filters:
+      "tag:Name": "{{ item }}"
+    state: present
+    subnet_id: "{{ subnet_result.subnet.id }}"
+    security_groups: [ "{{ security_group_results.group_id }}" ]
+    network_interfaces:
+      - device_index: 0
+        subnet_id: "{{ subnet_result.subnet.id }}"
+        assign_public_ip: true
+    tags:
+      Name: "{{ item }}"
+  loop: "{{ OS_Names }}"

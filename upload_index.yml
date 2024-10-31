@@ -1,0 +1,50 @@
+# upload_index.yml
+- name: Upload index.html to web servers
+  hosts: "webserver*"
+  become: yes
+  tasks:
+    - name: Ensure NGINX is installed (for RedHat-based systems)
+      ansible.builtin.yum:
+        name: nginx
+        state: present
+      when: ansible_os_family == "RedHat"
+      notify: restart nginx
+
+    - name: Ensure NGINX is installed (for Debian-based systems)
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+        update_cache: yes
+      when: ansible_os_family == "Debian"
+      notify: restart nginx
+
+    - name: Ensure NGINX is installed (for Amazon Linux)
+      ansible.builtin.yum:
+        name: nginx
+        state: present
+      when: ansible_distribution == "Amazon"
+      notify: restart nginx
+
+    - name: Copy index.html to NGINX default directory for RedHat and Amazon
+      ansible.builtin.copy:
+        src: ~/Documents/ansible/ec2/ec2/files/index.html
+        dest: /usr/share/nginx/html/index.html
+        owner: nginx
+        group: nginx
+        mode: '0644'
+      when: ansible_os_family == "RedHat" or ansible_distribution == "Amazon"
+
+    - name: Copy index.html to NGINX default directory for Debian
+      ansible.builtin.copy:
+        src: ~/Documents/ansible/ec2/ec2/files/index.html
+        dest: /var/www/html/index.html
+        owner: www-data
+        group: www-data
+        mode: '0644'
+      when: ansible_os_family == "Debian"
+
+  handlers:
+    - name: restart nginx
+      ansible.builtin.service:
+        name: nginx
+        state: restarted

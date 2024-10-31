@@ -1,0 +1,8 @@
+- name: Deploy AWS Infrastructure
+  hosts: localhost
+  gather_facts: no
+
+  collections:
+    - amazon.aws
+  roles:
+    - ec2

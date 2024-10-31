@@ -1,0 +1,14 @@
+plugin: amazon.aws.aws_ec2
+regions:
+  - us-east-1  # Replace with your region
+filters:
+  tag:Name: "webserver*"  # Replace with your instance tags
+key_name: ansible  # Optionally define key pair if you want to restrict access
+keyed_groups:
+  - key: tags.Name
+    prefix: "instance_"
+hostnames:
+  - tag:Name
+compose:
+  ansible_host: public_ip_address  # Use the public IP for connections
+  ansible_user: ec2-user  # Specify the default username for your instances

@@ -1,0 +1,17 @@
+---
+- name: Install Nginx on EC2 instances
+  hosts: all
+  become: true
+  gather_facts: yes
+
+  tasks:
+    - name: Update package list and install Nginx
+      ansible.builtin.package:
+        name: nginx
+        state: present
+    - name: Start and enable Nginx service
+      ansible.builtin.systemd:
+        name: nginx
+        state: started
+        enabled: true
+   

@@ -1,0 +1,18 @@
+# tasks/main.yml
+- name: Set up VPC
+  include_tasks: vpc.yml
+
+- name: Set up Internet Gateway
+  include_tasks: internet-GW.yml
+
+- name: Set up Subnet
+  include_tasks: subnet.yml
+
+- name: Set up Route Table
+  include_tasks: route_table.yml
+
+- name: Set up Security Group
+  include_tasks: security_group.yml
+
+- name: Launch EC2 Instance
+  include_tasks: ec2_instance.yml
