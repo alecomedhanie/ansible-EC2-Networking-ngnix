@@ -1,22 +1,8 @@
+---
+
 Ansible Multi-OS Web Server Deployment with AWS VPC Setup
 
 This project is an Ansible playbook to automate the setup and deployment of a web server across multiple EC2 instances with different Linux distributions (e.g., RedHat, Debian, Amazon Linux) in a secure AWS Virtual Private Cloud (VPC). This setup involves provisioning an isolated VPC, setting up subnets, configuring security groups, deploying NGINX, and uploading a custom index.html file to each instance.
-
-Table of Contents
-
-Project Overview
-
-Prerequisites
-
-Project Structure
-
-Setup
-
-Usage
-
-License
-
-
 
 ---
 
