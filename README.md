@@ -37,16 +37,11 @@ Ensure you have:
 	•	Ansible Vault for encrypted credentials if needed
 	•	Python Boto3 library installed for AWS dynamic inventory management
 
+
 Project Structure
 
-├── ansible.cfg                # Ansible configuration file
-├── aws_ec2.yml                # Dynamic inventory file for AWS EC2
-├── create_vpc.yml             # Playbook to create VPC and networking resources
-├── install_nginx.yml          # Playbook to install and configure NGINX
-├── upload_index.yml           # Playbook to upload HTML file
-├── files/
-│   └── index.html             # HTML file to deploy on web servers
-└── vault.pass                 # Ansible Vault password file (optional)
+![Screenshot 2024-10-31 at 4 26 00 PM](https://github.com/user-attachments/assets/0fdf8720-4a6d-4866-8d46-671b7cc4fb59)
+
 
 Setup
 
